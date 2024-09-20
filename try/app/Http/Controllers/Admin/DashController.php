@@ -9,6 +9,6 @@ class DashController extends Controller
 {
     public function index(){
         dump('Ben trovato sulla home della Dashboard');
-        return view('admin.index');
+        return view('Admin.index');
     }
 }
