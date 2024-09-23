@@ -54,24 +54,34 @@ class WorkController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Work $work)
     {
-        //
+      /*   $work=Work::find($work); */
+       return view('admin.work.edit', compact('work'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(WorkRequest $request, Work $work)
     {
-        //
+        $data=$request->all();
+
+        if($data['title'] != $work['title'] ){
+            $data['slug']= Helper::generateSlug($data['title'],Work::class);
+        }
+        $work->update($data);
+
+        return redirect()->route('admin.work.show',$work)->with('update','Il Progetto è stato aggiornato');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Work $work)
     {
-        //
+        $work->delete();
+        return redirect()->route('admin.work.index')->with('delete','il Progetto'. $work['title'].' è stato cancellato');
     }
 }

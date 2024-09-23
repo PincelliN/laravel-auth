@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
              $table->id();
-            $table->string('title',100)->unique();
+            $table->string('title',100);
             $table->string('slug',100)->unique();
             $table->string('subject',100);
             $table->date('start_date');

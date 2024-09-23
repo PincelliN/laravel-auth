@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('update'))
+        <div class="alert alert-success">
+            {{ session('update') }}
+        </div>
+    @endif
     <div class="card " style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">{{ $work->title }}</h5>
@@ -26,8 +31,15 @@
             </ul>
             <a href="{{ route('admin.work.index') }}" class="card-link btn btn-secondary" title="Indietro"><i
                     class="fa-solid fa-table-cells"></i></a>
-            <a href="" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
-            <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+            <a href="{{ route('admin.work.edit', $work) }}" class="btn btn-warning"><i
+                    class="fa-solid fa-pen-to-square"></i></a>
+            <form class="d-inline" action="{{ route('admin.work.destroy', $work) }}" method="post"
+                onsubmit="return confirm('sei sicuro di voler cancellare {{ $work['title'] }}')">
+                @csrf
+                @method('delete')
+                <button class="btn btn-danger" type="submit"title='Cancella'><i class="fa-solid fa-trash"></i>
+                </button>
+            </form>
         </div>
     </div>
 @endsection

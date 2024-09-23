@@ -2,6 +2,11 @@
 
 @section('content')
     <table class="table">
+        @if (session('delete'))
+            <div class="alert alert-danger d-block">
+                {{ session('delete') }}
+            </div>
+        @endif
         <thead>
             <tr>
                 <th scope="col">#id</th>
@@ -26,15 +31,23 @@
                     <td>{{ $work['post'] }}</td>
                     <td>{{ $work['collaborators'] }}</td>
                     <td>
-                        <a href="{{ route('admin.work.show', $work) }}" class="btn btn-success"><i
+                        <a href="{{ route('admin.work.show', $work) }}" class="btn btn-success" title="Dettaglio"><i
                                 class="fa-solid fa-eye"></i></a>
-                        <a href="" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                        <a href="{{ route('admin.work.edit', $work) }}" class="btn btn-warning"title="Modifica"><i
+                                class="fa-solid fa-pen-to-square"></i></a>
+
+                        <form class="d-inline" action="{{ route('admin.work.destroy', $work) }}" method="post"
+                            onsubmit="return confirm('sei sicuro di voler cancellare {{ $work['title'] }}')">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger" type="submit"title='Cancella'><i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+
                     </td>
 
                 </tr>
             @endforeach
         </tbody>
-
     </table>
 @endsection

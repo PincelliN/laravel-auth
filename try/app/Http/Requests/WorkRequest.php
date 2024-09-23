@@ -22,8 +22,7 @@ class WorkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>'required|unique:works|max:100|min:3',
-
+            'title'=>'required|max:100|min:3',
             'subject'=>'required|max:100|min:3',
             'start_date'=>'required|date',
             'end_date'=>'nullable|date',
@@ -36,7 +35,6 @@ class WorkRequest extends FormRequest
     {
         return [
     'title.required' => 'Il titolo è obbligatorio.',
-    'title.unique' => 'Il titolo è già stato utilizzato. Scegline uno diverso.',
     'title.max' => 'Il titolo non può superare i 100 caratteri.',
     'title.min' => 'Il titolo deve avere almeno 3 caratteri.',
 
