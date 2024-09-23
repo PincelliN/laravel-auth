@@ -27,7 +27,7 @@
 <body>
     <div id="app" class="text-bg-dark">
         @include('Admin.Partials.header')
-        <main class="d-flex">
+        <main class="d-flex py-2 px-3">
             @include('Admin.Partials.aside')
             @yield('content')
         </main>
