@@ -23,7 +23,7 @@ class WorkRequest extends FormRequest
     {
         return [
             'title'=>'required|unique:works|max:100|min:3',
-            'slug'=>'required|unique:works|max:100|min:3',
+
             'subject'=>'required|max:100|min:3',
             'start_date'=>'required|date',
             'end_date'=>'nullable|date',
@@ -39,11 +39,6 @@ class WorkRequest extends FormRequest
     'title.unique' => 'Il titolo è già stato utilizzato. Scegline uno diverso.',
     'title.max' => 'Il titolo non può superare i 100 caratteri.',
     'title.min' => 'Il titolo deve avere almeno 3 caratteri.',
-
-    'slug.required' => 'Lo slug è obbligatorio.',
-    'slug.unique' => 'Lo slug è già stato utilizzato. Scegline uno diverso.',
-    'slug.max' => 'Lo slug non può superare i 100 caratteri.',
-    'slug.min' => 'Lo slug deve avere almeno 3 caratteri.',
 
     'subject.required' => 'Il soggetto è obbligatorio.',
     'subject.max' => 'Il soggetto non può superare i 100 caratteri.',

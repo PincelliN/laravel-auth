@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Functions\Helper;
+use App\Http\Requests\WorkRequest;
 use App\Models\Work;
 
 class WorkController extends Controller
@@ -29,9 +30,15 @@ class WorkController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(WorkRequest $request)
     {
-        //
+        $data= $request->all();
+        $new_work= new Work();
+        $data['slug']= Helper::generateSlug($data['title'],Work::class);
+        $new_work->fill($data);
+        $new_work->save();
+
+        return redirect()->route('admin.work.show',$new_work->id);
     }
 
     /**
