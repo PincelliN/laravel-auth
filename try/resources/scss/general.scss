@@ -2,6 +2,11 @@ li {
     list-style: none;
 }
 
+main,
+aside {
+    height: calc(100vh - 100px);
+}
+
 header,
 aside {
     a {
@@ -17,7 +22,6 @@ header {
     height: 50px;
 }
 aside {
-    height: calc(100vh - 100px);
     width: 250px;
 }
 footer {
